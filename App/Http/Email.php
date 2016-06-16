@@ -24,8 +24,8 @@ Class Email
 		    'port' => '465',
 		    'auth' => true,
 		    // 這邊設定對的話，可以寄信。
-		    'username' => 'nctu.apply.ee@gmail.com',
-		    'password' => 'ETTM8wxRRS'
+		    'username' => 'account@gmail.com',
+		    'password' => 'password'
 		];
 	}
 
