@@ -23,7 +23,7 @@ Class DB
     public static function connect() {    
         // Try and connect to the database
         if(!isset(self::$connection)) {
-            self::$connection = mysqli_connect('localhost', 'root', '', 'apply_system');
+            self::$connection = mysqli_connect('host', 'username', 'password', 'database');
             mysqli_query(self::$connection, "SET NAMES 'utf8'");
         }
 
