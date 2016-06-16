@@ -6,21 +6,21 @@ This is a simple PHP framework inspired by Laravel. Now we offer some Classes in
 ## App\Eloquent
 
 Class `DB`
-[details](https://github.com/ukyouz/tinyM/tree/master/App)
+[details](https://github.com/ukyouz/tinyM/tree/master/App/Eloquent)
 
 Class `Model`
-[details](https://github.com/ukyouz/tinyM/tree/master/App)
+[details](https://github.com/ukyouz/tinyM/tree/master/App/Eloquent)
 
 ## App\Http
 
 Class `Email`
-[details](https://github.com/ukyouz/tinyM/tree/master/Http)
+[details](https://github.com/ukyouz/tinyM/tree/master/App/Http)
 
 Class `Request`
-[details](https://github.com/ukyouz/tinyM/tree/master/Http)
+[details](https://github.com/ukyouz/tinyM/tree/master/App/Http)
 
 Class `UploadedFile`
-[details](https://github.com/ukyouz/tinyM/tree/master/Http)
+[details](https://github.com/ukyouz/tinyM/tree/master/App/Http)
 
 Class `Validator`
-[details](https://github.com/ukyouz/tinyM/tree/master/Http)
+[details](https://github.com/ukyouz/tinyM/tree/master/App/Http)
