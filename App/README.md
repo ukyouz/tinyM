@@ -27,7 +27,9 @@ Class DB
 }
 ```
 
-## Definine
+See also, Class `DB` [Documentation](/App/Eloquent).
+
+## Define
 
 To create use a new Model Class `Student`, just add a new file called `Student.php` under folder `App/`.
 
@@ -56,7 +58,7 @@ Class Example extends Model
 
 ## Usages
 
-before using any of Models under folder `App\`, you need to include these files by an `autoload.php` located in folder `vender/`, and then `use` with their correct paths.
+Before using any of Models under folder `App/`, you need to include these files by an `autoload.php` located in folder `vender/`, and then `use` with their correct paths.
 
 ``` php
 <?php
@@ -77,6 +79,9 @@ Or find by primary key.
 
 ``` php
 $students = Student::find(1)->get();
+
+// whick is equivalent to
+$students = Student::where('id', 1)->get();
 ```
 
 #### Adding Additional Constraints
@@ -92,7 +97,7 @@ $students = Student::select('id', 'name', 'major')
 
 #### Using Result Datasets
 
-The method `get()` returns as an Array of all Object datasets.
+The method `get` returns as an Array of all Object datasets.
 
 ``` php
 Array
@@ -123,4 +128,62 @@ stdClass Object
 }
 ```
 
-[Details](/App/Eloquent) about usage of Class `Model`.
+### Inserting & Updating Models
+
+We accept only Class `Request` to insert or update data, so you need to add `use` command to enable it.
+
+``` php
+use App\Http\Request;
+
+// or your specific request file for student
+use App\Http\StudentRequest;
+```
+
+Also, because we have already defined variable Array `$fillable` in Model file, data will only be inserted or updated for those fillable fields.
+
+#### Basic Inserts
+
+``` php
+// use Request::all() to retrieve all inputs of form.
+Student::create(Request::all());
+```
+
+#### Basic Updates
+
+``` php
+// use Request::all() to retrieve all inputs of form.
+Student::find(1)->update(Request::all());
+```
+
+Updates can also be performed against any number of models that match a given query. In this example, all Students that are grade `4` will be updated as graduated:
+
+``` php
+// Let's say, we have a input 'graduated' that value = 1;
+Student::where('grade', 4)->update(Request::only('graduated'));
+```
+
+### Deleting Models
+
+To delete a dataset, call the `delete` method on a model instance:
+
+``` php
+$student = Student::find(1);
+
+$student->delete();
+```
+
+#### Deleting An Existing Model By Key
+
+if you know the primary key of the model, you may delete the model without retrieving it. To do so, call the `destroy` method:
+
+``` php
+Student::destroy(1);
+```
+
+#### Deleting Models By Query
+
+
+
+``` php
+Student::where('graduated', 1)->delete();
+```
