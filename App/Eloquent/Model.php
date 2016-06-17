@@ -42,7 +42,9 @@ Class Model
 		$args = func_get_args();
         // static::$select = join(",", $args);
         $instance = new static;
-		$results = $instance->db()->select(join(',', $args))->get();
+		$results = $instance->db()->select($args)->get();
+		// var_dump($results);
+		// echo $instance->db()->error();
 		$instance->retrieve($results);
 		return $instance;
 	}
