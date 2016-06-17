@@ -11,7 +11,7 @@ To create use a new Class `Model`, here are some instructions.
 
 inside Example.php
 
-```php
+``` php
 <?php
 namespace App;
 use App\Eloquent\Model;
