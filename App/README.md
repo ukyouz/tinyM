@@ -26,4 +26,4 @@ Class Example extends Model
 }
 ```
 
-[Details](/ukyouz/tinyM/tree/master/App/Eloquent) about usage of Class `Model`.
+[Details](/App/Eloquent) about usage of Class `Model`.
