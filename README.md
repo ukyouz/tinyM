@@ -4,7 +4,7 @@ A PHP framework with Model.
 This is a simple PHP framework inspired by Laravel. Now we offer some Classes in our work, here list some usages of example. Hope these help you get an general idea of this simple framework.
 
 ### App\
-New Models go here. [details](/App/)
+New `Model` goes here. [details](/App/)
 
 ### App\Eloquent
 
