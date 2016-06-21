@@ -24,14 +24,20 @@ Class Validator
 	}
 
 	private function check(Request $request)
-	{
+	{	
+				// echo "<pre>";
+		// print_r($request->file()->get());
 		foreach ($this->rules as $key => $value) {
 			$input = null;
 			if ($request->has($key))
 				$input = $request->input($key);
-			if ($request->hasFile($key))
+			if ($request->hasFile($key)){
 				$input = $request->file($key);
+				// echo $key."<br>";
+				// print_r($input);
+			}
 
+				// echo $key;
 			if ($input == null)
 				continue;
 
@@ -79,7 +85,7 @@ Class Validator
 					$message = '必須為數字';
 				break;
 			case 'mimes':
-				if (!$this->check_mime($input->getMimeType(), $rule[1]))
+				if (!$this->check_mime($input->first()->type, $rule[1]))
 					$message = '只能上傳以下副檔名：'. $rule[1];
 				break;
 			case 'size':

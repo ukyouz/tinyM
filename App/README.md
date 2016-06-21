@@ -16,9 +16,9 @@ You have to setup configuraions in `App/Eloquent/DB.php` first, to connect to yo
 
 Class DB
 {
-	//
+    //
     public static function connect() {
-    	// setup here
+        // setup here
         self::$connection = mysqli_connect('host', 'username', 'password', 'database');
         // …
     }
@@ -45,14 +45,14 @@ require_once 'Eloquent/Model.php';
 
 Class Example extends Model
 {
-	/**
+    /**
      * The table associated with the model.
      * @var string
      */
-	protected $table = 'tablename';
+    protected $table = 'tablename';
     
-	protected $primaryKey = 'id';
-	protected $fillable = ['column1', 'column2'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['column1', 'column2'];
 }
 ```
 
@@ -90,8 +90,8 @@ Alternatively, you may want some specific conditions to limit the results.
 
 ``` php
 $students = Student::select('id', 'name', 'major')
-	->where('grade', '>', 2)
-	->orderBy('name', 'desc')
+    ->where('grade', '>', 2)
+    ->orderBy('name', 'desc')
     ->get();
 ```
 
@@ -108,7 +108,7 @@ Array
             [column1] => 'value1'
             [column2] => 'value2'
         }
-	[1] => stdClass Object
+    [1] => stdClass Object
         (
             [id] => 2
             [column1] => 'value1'
@@ -117,7 +117,7 @@ Array
 )
 ```
 
-Or the Object if there is only 1 dataset.
+The method `first` returns the first Object in the datasets.
 
 ``` php
 stdClass Object
@@ -182,7 +182,7 @@ Student::destroy(1);
 
 #### Deleting Models By Query
 
-
+You can delete multiple sets with `where` constraint. For example, we may want to delete all student data who are already graduated.
 
 ``` php
 Student::where('graduated', 1)->delete();

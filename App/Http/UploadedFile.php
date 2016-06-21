@@ -12,16 +12,29 @@ Class UploadedFile
 		$this->files = $_FILES;
 	}
 
-	public static function file()
+	public static function file($key = null)
 	{
-		$args = [];
 		$instance = new static;
-		if( count(func_get_args()) )
-			foreach (func_get_args() as $key => $value)
-				$args[$value] = $value;
-		else
-			foreach ($instance->files as $key => $value)
-				$args[$value] = $value;
+		if($key==null)
+			return $instance;
+
+		if(array_key_exists($key, $instance->files)) {
+			$args = [$key => $key];		
+			$instance->files = array_intersect_key($instance->files, $args);
+		} else {
+			$instance->error = "No such file.";
+			$instance->files = [];
+		}
+
+		return $instance;
+	}
+
+	public static function only()
+	{
+		$instance = new static;
+		$args = [];
+		foreach (func_get_args() as $key => $value)
+			$args[$value] = $value;
 
 		$instance->files = array_intersect_key($instance->files, $args);
 		return $instance;
@@ -112,23 +125,22 @@ Class UploadedFile
 
 	public function get()
 	{
-		if (count($this->files) == 1)
-			return (Object)reset($this->files);
-
 		return array_map(function($arr){
 			return (Object)$arr;
 		}, $this->files);
 	}
 
- 	public function getMimeType()
- 	{
-		if (count($this->files) == 1)
-			return $this->get()->type;
+	public function first()
+	{
+		return (Object)reset($this->files);
+	}
 
-		return array_map(function($arr){
-			return $arr->type;
-		}, $this->get());
- 	}
+ 	// public function getMimeType()
+ 	// {
+		// return array_map(function($arr){
+		// 	return $arr->type;
+		// }, $this->get());
+ 	// }
 
 	private function pathinfo($path)
 	{

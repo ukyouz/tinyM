@@ -214,10 +214,17 @@ Class Model
      */
 	public function get()
 	{
-		if($this->count() == 1)
-			return $this->objs[0];
-
 		return $this->objs;
+	}
+
+	/**
+     * Get the first selected data
+     *
+     * @return Object The first result of the select function
+     */
+	public function first()
+	{
+		return reset($this->objs);
 	}
 
 	public function failed()

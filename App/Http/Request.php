@@ -76,10 +76,10 @@ Class Request
 		return $instance->files->file($key);
 	}
 
-	public function hasFile($key)
+	public function hasFile($key = null)
 	{
 		$instance = new static;
-
+		// echo $key."<br>";
 		return $instance->files->hasFile($key);
 	}
 
@@ -111,13 +111,13 @@ Class Request
 		return array_key_exists($key, $instance->inputs);
 	}
 
-	public function get()
-	{
-		if(count($this->inputs) == 1)
-			return reset($this->inputs);
+	// public function get()
+	// {
+	// 	if(count($this->inputs) == 1)
+	// 		return reset($this->inputs);
 
-		return $this->inputs;
-	}
+	// 	return $this->inputs;
+	// }
 
 	public function error()
 	{
