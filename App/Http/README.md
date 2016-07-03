@@ -76,30 +76,51 @@ if (Request::hasFile('homework')) {
 
 #### Uploading File to Directory
 
-Once you get a file instance from request, you can upload this file to specific directory in your server by using `move` method.
+Once you get a file instance from request, you can upload this file to specific directory in your server by using `move` method. At the same time, you can reasign a new filename with extension by putting the second parameter.
 
 ``` php
 $homework->move('/server/path/to/upload/folder/');
+
+// save the uploaded file as 'new-filename.pdf'
+$homework->move('/server/path/to/upload/folder/', 'new-filename.pdf');
 ```
 
 #### Check if failed Or Not
 
 ``` php
 if ($homework->failed()) {
-	echo $file->error();
+	echo $homework->error();
 }
 ```
 
 #### Retrieving Files Data
 
-The method `get` returns as an Array of all Files.
+Usaully if you deal only one file at a time, `first` method will be good enough.
+
+``` php
+$homework->first();
+```
+The `first` method returns the first File.
+
+``` php
+stdClass Object
+(
+    [name] => new-filename.pdf
+    [type] => application/pdf
+    [tmp_name] => C:\wamp\tmp\php7627.tmp
+    [error] => 0
+    [size] => 127153
+)
+```
+
+Or if you do need a bunch of files, `get` method returns as an Array of all Files.
 
 ``` php
 Array
 (
     [homework] => stdClass Object
         (
-            [name] => uploaded-file-name.pdf
+            [name] => new-filename.pdf
             [type] => application/pdf
             [tmp_name] => C:\wamp\tmp\php7627.tmp
             [error] => 0
@@ -107,24 +128,11 @@ Array
         )
     [profile_picture] => stdClass Object
         (
-            [name] => uploaded-picture-name.jpg
+            [name] => new-picture-name.jpg
             [type] => image/jpeg
             [tmp_name] => C:\wamp\tmp\php7628.tmp
             [error] => 0
             [size] => 189077
         )
-)
-```
-
-The method `first` returns the first File.
-
-``` php
-stdClass Object
-(
-    [name] => uploaded-file-name.pdf
-    [type] => application/pdf
-    [tmp_name] => C:\wamp\tmp\php7627.tmp
-    [error] => 0
-    [size] => 127153
 )
 ```

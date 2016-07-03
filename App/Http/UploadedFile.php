@@ -110,6 +110,7 @@ Class UploadedFile
 				// $filename = $key.".".$this->pathinfo($file['name'])['extension'];
 				$filename = $this->pathinfo($file['name'])['basename'];
 			
+			// Filter for Japanese and Korean
 			$newFilename = preg_replace('/[\x{AC00}-\x{D7A3}|\x{0800}-\x{4e00}]+/u', '-', $filename);
 			$newFilename = iconv("utf-8", "big5//IGNORE", $newFilename);
 
