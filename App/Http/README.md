@@ -108,7 +108,7 @@ Array
     [profile_picture] => stdClass Object
         (
             [name] => uploaded-picture-name.jpg
-            [type] => image/png
+            [type] => image/jpeg
             [tmp_name] => C:\wamp\tmp\php7628.tmp
             [error] => 0
             [size] => 189077
