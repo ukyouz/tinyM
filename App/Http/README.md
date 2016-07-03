@@ -60,7 +60,7 @@ Sometimes you may need access to Files.
 
 #### Retrieving An Uploaded File
 
-Once you call the `file` method, this will return an `UploadedFile` Class instance, so you can do more for your files.
+Calling the `file` method will return an `UploadedFile` Class instance, so you can do more for your files.
 
 ``` php
 $homework = Request::file('homework');
@@ -74,8 +74,57 @@ if (Request::hasFile('homework')) {
 }
 ```
 
-Below is the `UploadFile` Class details.
+#### Uploading File to Directory
 
-### UploadedFile
+Once you get a file instance from request, you can upload this file to specific directory in your server by using `move` method.
 
+``` php
+$homework->move('/server/path/to/upload/folder/');
+```
 
+#### Check if failed Or Not
+
+``` php
+if ($homework->failed()) {
+	echo $file->error();
+}
+```
+
+#### Retrieving Files Data
+
+The method `get` returns as an Array of all Files.
+
+``` php
+Array
+(
+    [homework] => stdClass Object
+        (
+            [name] => uploaded-file-name.jpg
+            [type] => image/pdf
+            [tmp_name] => C:\wamp\tmp\php7627.tmp
+            [error] => 0
+            [size] => 127153
+        )
+    [profile_picture] => stdClass Object
+        (
+            [name] => uploaded-picture-name.jpg
+            [type] => image/png
+            [tmp_name] => C:\wamp\tmp\php7628.tmp
+            [error] => 0
+            [size] => 189077
+        )
+)
+```
+
+The method `first` returns the first File.
+
+``` php
+stdClass Object
+(
+    [name] => uploaded-file-name.jpg
+    [type] => image/pdf
+    [tmp_name] => C:\wamp\tmp\php7627.tmp
+    [error] => 0
+    [size] => 127153
+)
+```
