@@ -1,4 +1,4 @@
-# tinyM
+# tinyM - Http
 A PHP framework with Model.
 
 This is a simple PHP framework inspired by Laravel. Now we offer some Classes in our work, here list some usages of example. Hope these help you get an general idea of this simple framework.
@@ -99,8 +99,8 @@ Array
 (
     [homework] => stdClass Object
         (
-            [name] => uploaded-file-name.jpg
-            [type] => image/pdf
+            [name] => uploaded-file-name.pdf
+            [type] => application/pdf
             [tmp_name] => C:\wamp\tmp\php7627.tmp
             [error] => 0
             [size] => 127153
@@ -121,8 +121,8 @@ The method `first` returns the first File.
 ``` php
 stdClass Object
 (
-    [name] => uploaded-file-name.jpg
-    [type] => image/pdf
+    [name] => uploaded-file-name.pdf
+    [type] => application/pdf
     [tmp_name] => C:\wamp\tmp\php7627.tmp
     [error] => 0
     [size] => 127153
