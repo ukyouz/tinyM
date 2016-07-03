@@ -98,14 +98,17 @@ Class UploadedFile
 		return $this->error;
 	}
 
-	public static function move($toPath, $filename = null)
+	public function move($toPath, $filename = null)
 	{
-		$instance = new static;
+		if(count($this->files) == 0){
+			$this->error = 'Empty file.';
+			return $this;
+		}
 
-		foreach ($instance->files as $key => $file) {
+		foreach ($this->files as $key => $file) {
 			if ($filename == null)
-				// $filename = $key.".".$instance->pathinfo($file['name'])['extension'];
-				$filename = $instance->pathinfo($file['name'])['basename'];
+				// $filename = $key.".".$this->pathinfo($file['name'])['extension'];
+				$filename = $this->pathinfo($file['name'])['basename'];
 			
 			$newFilename = preg_replace('/[\x{AC00}-\x{D7A3}|\x{0800}-\x{4e00}]+/u', '-', $filename);
 			$newFilename = iconv("utf-8", "big5//IGNORE", $newFilename);
@@ -114,13 +117,13 @@ Class UploadedFile
 				mkdir($toPath);
 
 			if (move_uploaded_file($file["tmp_name"], $toPath. $newFilename)) {
-				$instance->files[$key]['name'] = iconv("big5", "utf-8", $newFilename);
+				$this->files[$key]['name'] = iconv("big5", "utf-8", $newFilename);
 			} else {
-				$instance->error .= "無法上傳檔案：". $filename. "。\n";
+				$this->error .= "無法上傳檔案：". $filename. "。\n";
 			}
 		}
 
-		return $instance;
+		return $this;
 	}
 
 	public function get()

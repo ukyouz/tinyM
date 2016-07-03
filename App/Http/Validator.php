@@ -86,10 +86,16 @@ Class Validator
 				break;
 			case 'mimes':
 				if (!$this->check_mime($input->first()->type, $rule[1]))
-					$message = '只能上傳以下副檔名：'. $rule[1];
+					$message = '只能上傳以下副檔名：'. $rule[1].'。上傳的檔案格式為：'.$input->first()->type;
 				break;
 			case 'size':
-				// if ($input['size'])
+				require_once '../../vender/eos/eos.php';
+				// echo "<pre>";
+				// print_r($input);
+				$eq = new \eqEOS();
+				// var_dump($eq->solveIF($rule[1]));
+				if ($input->first()->size > $eq->solveIF($rule[1])*1024)
+					$message = '檔案大小限制為：'.$eq->solveIF($rule[1]).' KB。上傳的檔案大小：'.round($input->first()->size/1024, 2).' KB';
 				break;
 			default:
 				# code...

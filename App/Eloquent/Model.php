@@ -146,7 +146,10 @@ Class Model
 				$validFields[$key] = $value;
 			}
 		}
-		// print_r($validFields);
+		if(count($validFields) == 0) {
+			$this->error[] = 'No valid fillable field exists.';
+			return $this;
+		}
 
 		foreach ($this->objs as $key => $value) {
 			$updatedKey[] = $value->$primaryKey;
